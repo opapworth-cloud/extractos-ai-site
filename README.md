@@ -1,9 +1,15 @@
 # ExtractOS Website
 
-Public landing site for ExtractOS.
+Private working repo for the ExtractOS website.
 
-- Preview/live Pages URL: https://opapworth-cloud.github.io/extractos-ai-site/
 - GitHub repo: https://github.com/opapworth-cloud/extractos-ai-site
 - Production domain target: `extractos.ai`
 
-`extractos.ai` currently points to GoDaddy parking. See `DNS_CUTOVER.md` for the DNS records needed to point the domain at this GitHub Pages site.
+Current status:
+
+- The repo is private.
+- GitHub Pages is disabled until launch.
+- `extractos.ai` currently points to GoDaddy parking for the web.
+- Google Workspace email is live and should be preserved for `Owen@extractos.ai` and `gooman@extractos.ai`.
+
+When ready to launch, enable hosting and follow `DNS_CUTOVER.md`.
