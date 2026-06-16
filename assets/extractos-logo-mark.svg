@@ -1,0 +1,11 @@
+<svg shape-rendering="geometricPrecision" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 320" role="img" aria-labelledby="title desc">
+  <title id="title">ExtractOS Smart Garden style leaf mark</title>
+  <desc id="desc">A faithful remake of the rounded green two-tone leaf tile from the Smart Garden Products reference.</desc>
+  <g fill="none" fill-rule="evenodd">
+    <path fill="#5C9F43" d="M18 302V136C18 75.2 67.2 26 128 26h176v174c0 56.3-45.7 102-102 102H18Z"/>
+    <path fill="#4E963D" d="M18 302V136C18 75.2 67.2 26 128 26h36c-50.8 0-92 41.2-92 92v135h154c36.5 0 67.2-24.8 76.2-58.4 1.2 6.6 1.8 13.5 1.8 20.4 0 48-39 87-87 87H18Z"/>
+    <path fill="#389139" d="M72 253V118c0-50.8 41.2-92 92-92h140v174c0 29.3-23.7 53-53 53H72Z"/>
+    <path fill="#D0D9D9" d="M90.3 229.2 C110.4 222.4 128.9 207.1 143.8 183.1 C159.0 158.8 175.3 126.8 193.8 108.3 C216.8 85.4 249.9 69.8 282.7 68.2 C276.3 78.3 267.8 93.8 262.4 101.3 C253.4 113.8 247.9 145.8 240.0 159.5 C231.1 175.0 222.0 192.8 206.8 206.7 C194.3 218.1 176.5 226.5 163.6 229.2 C140.8 234.0 112.1 235.8 90.3 229.2 Z"/>
+      <path fill="#D0D9D9" d="M82.5 215.2 C89.4 199.4 101.3 160.7 117.3 131.9 C133.8 102.1 165.0 84.0 213.0 79.2 C193.4 90.5 180.5 103.8 168.5 122.6 C154.5 144.4 144.6 166.7 131.9 181.1 C117.8 197.0 99.7 210.4 82.5 215.2 Z"/>
+  </g>
+</svg>
