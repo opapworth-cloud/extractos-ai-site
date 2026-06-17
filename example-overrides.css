@@ -382,6 +382,16 @@ body.layout-editorial .mission-statement p {
 }
 
 @media (max-width: 640px) {
+  body.variant .hero-media {
+    background-position: center top;
+  }
+
+  body.variant .hero-shade {
+    background:
+      linear-gradient(180deg, rgba(4, 15, 13, 0.06) 0%, rgba(4, 15, 13, 0.36) 35%, rgba(4, 15, 13, 0.94) 100%),
+      linear-gradient(90deg, rgba(4, 15, 13, 0.5) 0%, rgba(4, 15, 13, 0.18) 100%);
+  }
+
   .photo-ref {
     font-size: 0.68rem;
     min-height: 28px;

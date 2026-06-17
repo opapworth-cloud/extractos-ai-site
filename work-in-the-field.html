@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Work in the Field | ExtractOS</title>
+    <meta
+      name="description"
+      content="A field gallery of ExtractOS cannabis operating experience across extraction equipment, cultivation input control, and production environments."
+    >
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="stylesheet" href="styles.css?v=field-20260616-3">
+    <link rel="stylesheet" href="example-overrides.css?v=field-20260616-3">
+  </head>
+  <body class="variant variant-operator layout-human field-page">
+    <header class="site-header" aria-label="Primary navigation">
+      <nav class="nav-links" aria-label="Site sections">
+        <a href="index.html#mission">Mission</a>
+        <a href="index.html#method">Method</a>
+        <a href="index.html#operations">Operations</a>
+        <a href="work-in-the-field.html" aria-current="page">Work in the Field</a>
+        <a href="index.html#founder">Founder</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="field-hero" aria-labelledby="field-title">
+        <div class="field-hero-media" style="background-image: url('assets/work-in-field/field-02.jpg');" role="img" aria-label="Selected ExtractOS field experience photo 02"></div>
+        <div class="field-hero-shade"></div>
+        <div class="field-hero-content">
+          <p class="eyebrow">Operating experience</p>
+          <h1 id="field-title">Work in the Field</h1>
+          <p>Real facilities, grow rooms, equipment, and production environments shape the way ExtractOS designs systems for operators.</p>
+          <a class="button primary" href="mailto:Owen@extractos.ai">Talk with Owen</a>
+        </div>
+      </section>
+
+      <section class="field-gallery band cream" aria-labelledby="gallery-title">
+        <div class="section-inner">
+          <div class="field-gallery-heading">
+            <p class="eyebrow dark">Field notes</p>
+            <h2 id="gallery-title">A rotating look at the operating environments behind the work.</h2>
+          </div>
+
+          <div class="field-carousel" data-field-carousel>
+            <div class="field-stage">
+              <button class="gallery-arrow gallery-prev" type="button" aria-label="Previous image" data-field-prev>&lsaquo;</button>
+
+              <figure class="field-slide is-active" data-field-slide>
+                <img src="assets/work-in-field/field-01.jpg" alt="Selected ExtractOS field experience photo 01" data-field-image>
+                <figcaption>
+                  <span data-field-count>01 / 32</span>
+                  <h3>Selected work from the field</h3>
+                  <p>Facilities, grow rooms, equipment, and production environments from the operating experience behind ExtractOS.</p>
+                </figcaption>
+              </figure>
+
+              <button class="gallery-arrow gallery-next" type="button" aria-label="Next image" data-field-next>&rsaquo;</button>
+            </div>
+
+            <div class="field-thumbs" aria-label="Choose field image" data-field-thumbs>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="band dark" aria-labelledby="field-proof-title">
+        <div class="section-inner proof-grid">
+          <div>
+            <p class="eyebrow">What the photos show</p>
+            <h2 id="field-proof-title">Experience that connects the grow, the room, and the numbers.</h2>
+          </div>
+          <div class="proof-list">
+            <p><strong>Inputs matter.</strong> Cultivation choices, harvest timing, and material quality set the ceiling for extraction performance.</p>
+            <p><strong>Rooms need rhythm.</strong> Equipment, cleaning, staffing, storage, and compliance have to support the actual production day.</p>
+            <p><strong>Scale exposes systems.</strong> Mature operations need visibility, accountability, and repeatable decisions across the whole model.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="closing" aria-labelledby="field-closing-title">
+        <div class="closing-photo">
+          <img src="assets/work-in-field/field-07.jpg" alt="Selected ExtractOS field experience photo 07">
+        </div>
+        <div class="closing-copy">
+          <p class="eyebrow">Let's talk</p>
+          <h2 id="field-closing-title">Bring field-tested operating experience into the next stage of the build.</h2>
+          <a class="button primary" href="mailto:Owen@extractos.ai?subject=ExtractOS%20consultation">Start the conversation</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div>
+        <img class="footer-logo" src="assets/extractos-logo-lockup-reverse.svg" alt="ExtractOS cannabis operations logo">
+        <p>ExtractOS - Cannabis extraction consulting, facility design, operator training, software integration, and ongoing operations.</p>
+      </div>
+      <p class="credits"><a href="index.html">Back to ExtractOS</a></p>
+    </footer>
+
+    <script>
+      (() => {
+        const carousel = document.querySelector("[data-field-carousel]");
+        if (!carousel) return;
+
+        const fieldImages = Array.from({ length: 32 }, (_, index) => {
+          const number = String(index + 1).padStart(2, "0");
+          return {
+            src: `assets/work-in-field/field-${number}.jpg`,
+            alt: `Selected ExtractOS field experience photo ${number}`
+          };
+        });
+
+        const fieldImage = carousel.querySelector("[data-field-image]");
+        const fieldCount = carousel.querySelector("[data-field-count]");
+        const thumbsWrap = carousel.querySelector("[data-field-thumbs]");
+        const prev = carousel.querySelector("[data-field-prev]");
+        const next = carousel.querySelector("[data-field-next]");
+        const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        let active = 0;
+        let timer = null;
+        let touchStart = null;
+        let thumbs = [];
+
+        const renderThumbs = () => {
+          thumbsWrap.innerHTML = "";
+          fieldImages.forEach((image, index) => {
+            const thumb = document.createElement("button");
+            thumb.className = "field-thumb";
+            thumb.type = "button";
+            thumb.setAttribute("aria-label", `Show field image ${index + 1}`);
+            thumb.setAttribute("data-field-thumb", "");
+
+            const img = document.createElement("img");
+            img.src = image.src;
+            img.alt = "";
+            img.loading = "lazy";
+            thumb.appendChild(img);
+            thumbsWrap.appendChild(thumb);
+          });
+          thumbs = Array.from(thumbsWrap.querySelectorAll("[data-field-thumb]"));
+        };
+
+        const show = (index) => {
+          active = (index + fieldImages.length) % fieldImages.length;
+          const image = fieldImages[active];
+          fieldImage.src = image.src;
+          fieldImage.alt = image.alt;
+          fieldCount.textContent = `${String(active + 1).padStart(2, "0")} / ${fieldImages.length}`;
+
+          thumbs.forEach((thumb, thumbIndex) => {
+            thumb.classList.toggle("is-active", thumbIndex === active);
+            thumb.setAttribute("aria-pressed", thumbIndex === active ? "true" : "false");
+          });
+          thumbs[active]?.scrollIntoView({ block: "nearest", inline: "center" });
+        };
+
+        const stop = () => {
+          if (timer) window.clearInterval(timer);
+          timer = null;
+        };
+
+        const start = () => {
+          stop();
+          if (!reduceMotion) {
+            timer = window.setInterval(() => show(active + 1), 6500);
+          }
+        };
+
+        prev.addEventListener("click", () => {
+          show(active - 1);
+          start();
+        });
+
+        next.addEventListener("click", () => {
+          show(active + 1);
+          start();
+        });
+
+        renderThumbs();
+
+        thumbs.forEach((thumb, index) => {
+          thumb.addEventListener("click", () => {
+            show(index);
+            start();
+          });
+        });
+
+        carousel.addEventListener("mouseenter", stop);
+        carousel.addEventListener("mouseleave", start);
+        carousel.addEventListener("focusin", stop);
+        carousel.addEventListener("focusout", start);
+
+        carousel.addEventListener("touchstart", (event) => {
+          touchStart = event.changedTouches[0].clientX;
+        }, { passive: true });
+
+        carousel.addEventListener("touchend", (event) => {
+          if (touchStart === null) return;
+          const delta = event.changedTouches[0].clientX - touchStart;
+          if (Math.abs(delta) > 44) {
+            show(active + (delta < 0 ? 1 : -1));
+            start();
+          }
+          touchStart = null;
+        }, { passive: true });
+
+        show(0);
+        start();
+      })();
+    </script>
+  </body>
+</html>
