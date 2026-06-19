@@ -10,8 +10,8 @@
       <path fill="#D0D9D9" d="M82.5 215.2 C89.4 199.4 101.3 160.7 117.3 131.9 C133.8 102.1 165.0 84.0 213.0 79.2 C193.4 90.5 180.5 103.8 168.5 122.6 C154.5 144.4 144.6 166.7 131.9 181.1 C117.8 197.0 99.7 210.4 82.5 215.2 Z"/>
     </g>
     <g transform="translate(245 58)">
-      <text x="0" y="77" fill="#343A3C" font-family="Helvetica Neue, Arial, sans-serif" font-size="82" font-weight="300" letter-spacing="15">EXTRACTOS</text>
-      <text x="790" y="77" fill="#6B7472" font-family="Helvetica Neue, Arial, sans-serif" font-size="52" font-weight="300" letter-spacing="0">.ai</text>
+      <text x="0" y="77" fill="#343A3C" font-family="Helvetica Neue, Arial, sans-serif" font-size="82" font-weight="300" letter-spacing="1">Extract<tspan font-size="92" font-weight="400" letter-spacing="0">OS</tspan></text>
+      <text x="415" y="77" fill="#6B7472" font-family="Helvetica Neue, Arial, sans-serif" font-size="52" font-weight="300" letter-spacing="0">.ai</text>
       <text x="8" y="115" fill="#8D9694" font-family="Helvetica Neue, Arial, sans-serif" font-size="17" font-weight="400" letter-spacing="9">CANNABIS OPERATIONS</text>
     </g>
   </g>
