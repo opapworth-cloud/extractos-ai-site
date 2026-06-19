@@ -9,13 +9,14 @@
       content="ExtractOS helps cannabis operators avoid the expensive mistakes of maturing markets through extraction facility design, cultivation optimization, operator training, software integration, and ongoing operations."
     >
     <meta name="robots" content="noindex, nofollow">
-    <link rel="stylesheet" href="styles.css?v=field-20260618-flow-2">
-    <link rel="stylesheet" href="example-overrides.css?v=field-20260618-flow-2">
+    <link rel="stylesheet" href="styles.css?v=field-20260618-flow-4">
+    <link rel="stylesheet" href="example-overrides.css?v=field-20260618-flow-4">
   </head>
   <body class="variant variant-operator layout-human">
     <header class="site-header" aria-label="Primary navigation">
       <a class="brand" href="#top" aria-label="ExtractOS home">
-        <img class="header-logo" src="assets/extractos-logo-lockup-reverse.svg" alt="ExtractOS cannabis operations logo">
+        <span class="brand-mark"><img src="assets/extractos-logo-mark.svg" alt=""></span>
+        <span class="brand-name">ExtractOS</span>
       </a>
       <nav class="nav-links" aria-label="Page sections">
         <a href="#mission">Mission</a>
@@ -125,24 +126,35 @@
         </div>
       </section>
 
-      <section class="work-preview band cream" aria-labelledby="work-preview-title">
-        <div class="section-inner work-preview-grid">
-          <div class="work-preview-copy">
+      <section id="work-in-the-field" class="field-gallery integrated-field-gallery band cream" aria-labelledby="work-preview-title">
+        <div class="section-inner">
+          <div class="field-gallery-heading">
             <p class="eyebrow dark">Work in the field</p>
             <h2 id="work-preview-title">See the operating environments behind the method.</h2>
             <p>
               Real grow rooms, extraction equipment, production spaces, and field conditions shape the way ExtractOS thinks about inputs, throughput, team rhythm, and accountability.
             </p>
-            <a class="text-link" href="work-in-the-field.html">Open the field gallery</a>
           </div>
-          <a class="work-preview-media" href="work-in-the-field.html" aria-label="Open the ExtractOS work in the field gallery">
-            <img class="work-preview-main" src="assets/work-in-field/field-02.jpg" alt="ExtractOS field experience in a cannabis operating environment">
-            <span class="work-preview-strip" aria-hidden="true">
-              <img src="assets/work-in-field/field-08.jpg" alt="">
-              <img src="assets/work-in-field/field-16.jpg" alt="">
-              <img src="assets/work-in-field/field-27.jpg" alt="">
-            </span>
-          </a>
+
+          <div class="field-carousel" data-field-carousel>
+            <div class="field-stage">
+              <button class="gallery-arrow gallery-prev" type="button" aria-label="Previous image" data-field-prev>&lsaquo;</button>
+
+              <figure class="field-slide is-active" data-field-slide>
+                <img src="assets/work-in-field/field-01.jpg" alt="Selected ExtractOS field experience photo 01" data-field-image>
+                <figcaption>
+                  <span data-field-count>01 / 32</span>
+                  <h3>Selected work from the field</h3>
+                  <p>Facilities, grow rooms, equipment, and production environments from the operating experience behind ExtractOS.</p>
+                </figcaption>
+              </figure>
+
+              <button class="gallery-arrow gallery-next" type="button" aria-label="Next image" data-field-next>&rsaquo;</button>
+            </div>
+
+            <div class="field-thumbs" aria-label="Choose field image" data-field-thumbs>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -186,5 +198,117 @@
       </div>
       <p class="credits">Photography from Owen Papworth's cannabis operations archive.</p>
     </footer>
+
+    <script>
+      (() => {
+        const carousel = document.querySelector("[data-field-carousel]");
+        if (!carousel) return;
+
+        const fieldImages = Array.from({ length: 32 }, (_, index) => {
+          const number = String(index + 1).padStart(2, "0");
+          return {
+            src: `assets/work-in-field/field-${number}.jpg`,
+            alt: `Selected ExtractOS field experience photo ${number}`
+          };
+        });
+
+        const fieldImage = carousel.querySelector("[data-field-image]");
+        const fieldCount = carousel.querySelector("[data-field-count]");
+        const thumbsWrap = carousel.querySelector("[data-field-thumbs]");
+        const prev = carousel.querySelector("[data-field-prev]");
+        const next = carousel.querySelector("[data-field-next]");
+        const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        let active = 0;
+        let timer = null;
+        let touchStart = null;
+        let thumbs = [];
+
+        const renderThumbs = () => {
+          thumbsWrap.innerHTML = "";
+          fieldImages.forEach((image, index) => {
+            const thumb = document.createElement("button");
+            thumb.className = "field-thumb";
+            thumb.type = "button";
+            thumb.setAttribute("aria-label", `Show field image ${index + 1}`);
+            thumb.setAttribute("data-field-thumb", "");
+
+            const img = document.createElement("img");
+            img.src = image.src;
+            img.alt = "";
+            img.loading = "lazy";
+            thumb.appendChild(img);
+            thumbsWrap.appendChild(thumb);
+          });
+          thumbs = Array.from(thumbsWrap.querySelectorAll("[data-field-thumb]"));
+        };
+
+        const show = (index) => {
+          active = (index + fieldImages.length) % fieldImages.length;
+          const image = fieldImages[active];
+          fieldImage.src = image.src;
+          fieldImage.alt = image.alt;
+          fieldCount.textContent = `${String(active + 1).padStart(2, "0")} / ${fieldImages.length}`;
+
+          thumbs.forEach((thumb, thumbIndex) => {
+            thumb.classList.toggle("is-active", thumbIndex === active);
+            thumb.setAttribute("aria-pressed", thumbIndex === active ? "true" : "false");
+          });
+          thumbs[active]?.scrollIntoView({ block: "nearest", inline: "center" });
+        };
+
+        const stop = () => {
+          if (timer) window.clearInterval(timer);
+          timer = null;
+        };
+
+        const start = () => {
+          stop();
+          if (!reduceMotion) {
+            timer = window.setInterval(() => show(active + 1), 6500);
+          }
+        };
+
+        prev.addEventListener("click", () => {
+          show(active - 1);
+          start();
+        });
+
+        next.addEventListener("click", () => {
+          show(active + 1);
+          start();
+        });
+
+        renderThumbs();
+
+        thumbs.forEach((thumb, index) => {
+          thumb.addEventListener("click", () => {
+            show(index);
+            start();
+          });
+        });
+
+        carousel.addEventListener("mouseenter", stop);
+        carousel.addEventListener("mouseleave", start);
+        carousel.addEventListener("focusin", stop);
+        carousel.addEventListener("focusout", start);
+
+        carousel.addEventListener("touchstart", (event) => {
+          touchStart = event.changedTouches[0].clientX;
+        }, { passive: true });
+
+        carousel.addEventListener("touchend", (event) => {
+          if (touchStart === null) return;
+          const delta = event.changedTouches[0].clientX - touchStart;
+          if (Math.abs(delta) > 44) {
+            show(active + (delta < 0 ? 1 : -1));
+            start();
+          }
+          touchStart = null;
+        }, { passive: true });
+
+        show(0);
+        start();
+      })();
+    </script>
   </body>
 </html>
