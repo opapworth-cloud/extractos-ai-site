@@ -9,8 +9,8 @@
       content="A field gallery of ExtractOS cannabis operating experience across extraction equipment, cultivation input control, and production environments."
     >
     <meta name="robots" content="noindex, nofollow">
-    <link rel="stylesheet" href="styles.css?v=field-20260618-flow-4">
-    <link rel="stylesheet" href="example-overrides.css?v=field-20260618-flow-4">
+    <link rel="stylesheet" href="styles.css?v=field-20260618-flow-6">
+    <link rel="stylesheet" href="example-overrides.css?v=field-20260618-flow-6">
   </head>
   <body class="variant variant-operator layout-human field-page">
     <header class="site-header" aria-label="Primary navigation">
@@ -156,7 +156,7 @@
             thumb.classList.toggle("is-active", thumbIndex === active);
             thumb.setAttribute("aria-pressed", thumbIndex === active ? "true" : "false");
           });
-          thumbs[active]?.scrollIntoView({ block: "nearest", inline: "center" });
+          centerActiveThumb();
         };
 
         const stop = () => {
@@ -164,10 +164,16 @@
           timer = null;
         };
 
+        const centerActiveThumb = () => {
+          const thumb = thumbs[active];
+          if (!thumb) return;
+          thumbsWrap.scrollLeft = thumb.offsetLeft - ((thumbsWrap.clientWidth - thumb.clientWidth) / 2);
+        };
+
         const start = () => {
           stop();
           if (!reduceMotion) {
-            timer = window.setInterval(() => show(active + 1), 6500);
+            timer = window.setInterval(() => show(active + 1), 6000);
           }
         };
 
