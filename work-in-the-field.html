@@ -9,8 +9,8 @@
       content="A field gallery of ExtractOS cannabis operating experience across extraction equipment, cultivation input control, and production environments."
     >
     <meta name="robots" content="noindex, nofollow">
-    <link rel="stylesheet" href="styles.css?v=field-20260618-flow-6">
-    <link rel="stylesheet" href="example-overrides.css?v=field-20260618-flow-6">
+    <link rel="stylesheet" href="styles.css?v=field-20260618-flow-7">
+    <link rel="stylesheet" href="example-overrides.css?v=field-20260618-flow-7">
   </head>
   <body class="variant variant-operator layout-human field-page">
     <header class="site-header" aria-label="Primary navigation">
@@ -51,7 +51,7 @@
               <button class="gallery-arrow gallery-prev" type="button" aria-label="Previous image" data-field-prev>&lsaquo;</button>
 
               <figure class="field-slide is-active" data-field-slide>
-                <img src="assets/work-in-field/field-01.jpg" alt="Selected ExtractOS field experience photo 01" data-field-image>
+                <img src="assets/work-in-field/field-02.jpg" alt="Selected ExtractOS field experience photo 02" data-field-image>
                 <figcaption>
                   <span data-field-count>01 / 32</span>
                   <h3>Selected work from the field</h3>
@@ -107,8 +107,16 @@
         const carousel = document.querySelector("[data-field-carousel]");
         if (!carousel) return;
 
-        const fieldImages = Array.from({ length: 32 }, (_, index) => {
-          const number = String(index + 1).padStart(2, "0");
+        const fieldOrder = [
+          2,
+          3,
+          4,
+          25,
+          1,
+          ...Array.from({ length: 32 }, (_, index) => index + 1).filter((imageNumber) => ![1, 2, 3, 4, 25].includes(imageNumber))
+        ];
+        const fieldImages = fieldOrder.map((imageNumber) => {
+          const number = String(imageNumber).padStart(2, "0");
           return {
             src: `assets/work-in-field/field-${number}.jpg`,
             alt: `Selected ExtractOS field experience photo ${number}`
