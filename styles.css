@@ -9,6 +9,7 @@
   --clay: #8f4f2e;
   --line: rgba(20, 33, 27, 0.18);
   --white: #ffffff;
+  --wallpaper: url("assets/extractos-wallpaper-pattern.jpg");
 }
 
 * {
@@ -275,7 +276,13 @@ h3 {
 }
 
 .cream {
-  background: var(--cream);
+  background-color: var(--cream);
+  background-image:
+    linear-gradient(rgba(245, 241, 231, 0.72), rgba(245, 241, 231, 0.72)),
+    var(--wallpaper);
+  background-position: center top;
+  background-repeat: repeat;
+  background-size: auto, 640px 640px;
 }
 
 .sage {
