@@ -464,16 +464,19 @@ h3 {
 .proof-photo-grid {
   align-items: start;
   display: grid;
-  gap: clamp(40px, 5vw, 70px);
-  grid-template-columns: minmax(360px, 0.95fr) minmax(0, 1fr);
+  gap: clamp(30px, 4vw, 54px);
+  grid-template-columns: minmax(520px, 1.22fr) minmax(360px, 0.78fr);
+}
+
+.proof-photo .section-inner {
+  max-width: 1600px;
 }
 
 .proof-photo-image {
   align-self: start;
-  aspect-ratio: 5 / 7;
+  aspect-ratio: 15 / 17;
   background: transparent;
   justify-self: stretch;
-  max-height: 820px;
   overflow: hidden;
   width: 100%;
 }
@@ -486,12 +489,13 @@ h3 {
 }
 
 .proof-photo-copy h2 {
-  font-size: clamp(2.5rem, 5.8vw, 5.8rem);
-  margin-bottom: clamp(30px, 4vw, 48px);
+  font-size: clamp(2.45rem, 4.7vw, 4.95rem);
+  margin-bottom: clamp(26px, 3.5vw, 40px);
 }
 
 .proof-photo-copy .proof-list {
   border-left: 1px solid rgba(255, 250, 240, 0.22);
+  gap: 22px;
   padding-left: clamp(24px, 4vw, 52px);
 }
 
@@ -1198,11 +1202,7 @@ h3 {
   }
 
   .proof-photo-image {
-    aspect-ratio: 4 / 3;
-  }
-
-  .proof-photo-image img {
-    max-height: 360px;
+    aspect-ratio: 15 / 17;
   }
 
   .proof-photo-copy .proof-list {
