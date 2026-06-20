@@ -224,7 +224,7 @@
               <button class="gallery-arrow gallery-prev" type="button" aria-label="Previous image" data-field-prev>&lsaquo;</button>
 
               <figure class="field-slide is-active" data-field-slide>
-                <img src="assets/work-in-field/field-02.jpg" alt="Selected ExtractOS field experience photo 02" data-field-image>
+                <img src="assets/work-in-field/field-01.jpg" alt="Selected ExtractOS field experience photo 01" data-field-image>
                 <figcaption>
                   <span data-field-count>01 / 32</span>
                   <h3>Selected work from the field</h3>
@@ -297,12 +297,11 @@
         if (!carousel) return;
 
         const fieldOrder = [
+          1,
           2,
           3,
-          4,
           23,
-          1,
-          ...Array.from({ length: 32 }, (_, index) => index + 1).filter((imageNumber) => ![1, 2, 3, 4, 23].includes(imageNumber))
+          ...Array.from({ length: 32 }, (_, index) => index + 1).filter((imageNumber) => ![1, 2, 3, 23].includes(imageNumber))
         ];
         const fieldImages = fieldOrder.map((imageNumber) => {
           const number = String(imageNumber).padStart(2, "0");
@@ -317,9 +316,7 @@
         const thumbsWrap = carousel.querySelector("[data-field-thumbs]");
         const prev = carousel.querySelector("[data-field-prev]");
         const next = carousel.querySelector("[data-field-next]");
-        const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
         let active = 0;
-        let timer = null;
         let touchStart = null;
         let thumbs = [];
 
@@ -356,32 +353,18 @@
           centerActiveThumb();
         };
 
-        const stop = () => {
-          if (timer) window.clearInterval(timer);
-          timer = null;
-        };
-
         const centerActiveThumb = () => {
           const thumb = thumbs[active];
           if (!thumb) return;
           thumbsWrap.scrollLeft = thumb.offsetLeft - ((thumbsWrap.clientWidth - thumb.clientWidth) / 2);
         };
 
-        const start = () => {
-          stop();
-          if (!reduceMotion) {
-            timer = window.setInterval(() => show(active + 1), 6000);
-          }
-        };
-
         prev.addEventListener("click", () => {
           show(active - 1);
-          start();
         });
 
         next.addEventListener("click", () => {
           show(active + 1);
-          start();
         });
 
         renderThumbs();
@@ -389,14 +372,8 @@
         thumbs.forEach((thumb, index) => {
           thumb.addEventListener("click", () => {
             show(index);
-            start();
           });
         });
-
-        carousel.addEventListener("mouseenter", stop);
-        carousel.addEventListener("mouseleave", start);
-        carousel.addEventListener("focusin", stop);
-        carousel.addEventListener("focusout", start);
 
         carousel.addEventListener("touchstart", (event) => {
           touchStart = event.changedTouches[0].clientX;
@@ -407,13 +384,11 @@
           const delta = event.changedTouches[0].clientX - touchStart;
           if (Math.abs(delta) > 44) {
             show(active + (delta < 0 ? 1 : -1));
-            start();
           }
           touchStart = null;
         }, { passive: true });
 
         show(0);
-        start();
       })();
     </script>
   </body>
